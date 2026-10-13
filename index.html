@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Plotline is a project workspace with tables, boards, timelines, calendars and docs, all stored in your browser.">
+  <meta name="theme-color" content="#f7f7f5">
+  <title>Plotline · Project workspace</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b5bdb'/%3E%3Cpath d='M8 21l5-6 4 3 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views.css">
+</head>
+<body>
+  <a class="skip-link" href="#view">Skip to content</a>
+
+  <div id="app" class="app">
+
+    <!-- ============ Sidebar ============ -->
+    <aside id="sidebar" class="sidebar" aria-label="Workspace navigation">
+      <div class="sb-head">
+        <button id="workspace-btn" class="workspace-btn" type="button" aria-haspopup="menu">
+          <span class="ws-logo" aria-hidden="true"><i data-icon="logo"></i></span>
+          <span class="ws-name" id="workspace-name">Plotline</span>
+          <i data-icon="chevron-down" class="ws-caret"></i>
+        </button>
+        <button id="sidebar-toggle" class="icon-btn" type="button" aria-label="Collapse sidebar" title="Collapse sidebar  [">
+          <i data-icon="panel-left"></i>
+        </button>
+      </div>
+
+      <button id="open-search" class="sb-search" type="button">
+        <i data-icon="search"></i>
+        <span>Search or jump to</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+
+      <nav class="sb-scroll" aria-label="Main">
+        <ul id="nav-main" class="nav-list">
+          <li><a class="nav-item" href="#/home" data-route="home"><i data-icon="home"></i><span>Home</span></a></li>
+          <li><a class="nav-item" href="#/my-tasks" data-route="my-tasks"><i data-icon="check-circle"></i><span>My tasks</span><span class="nav-count" id="count-my-tasks"></span></a></li>
+          <li><a class="nav-item" href="#/dashboard" data-route="dashboard"><i data-icon="chart"></i><span>Dashboard</span></a></li>
+          <li><a class="nav-item" href="#/calendar" data-route="calendar"><i data-icon="calendar"></i><span>All calendar</span></a></li>
+        </ul>
+
+        <div class="nav-section" id="section-favorites" hidden>
+          <div class="nav-heading"><span>Favorites</span></div>
+          <ul id="nav-favorites" class="nav-list"></ul>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-heading">
+            <span>Projects</span>
+            <button id="add-project" class="icon-btn sm" type="button" aria-label="New project" title="New project"><i data-icon="plus"></i></button>
+          </div>
+          <ul id="nav-projects" class="nav-list"></ul>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-heading"><span>Docs</span>
+            <button id="add-doc" class="icon-btn sm" type="button" aria-label="New doc" title="New doc"><i data-icon="plus"></i></button>
+          </div>
+          <ul id="nav-docs" class="nav-list"></ul>
+        </div>
+      </nav>
+
+      <div class="sb-foot">
+        <button id="open-templates" class="nav-item as-button" type="button"><i data-icon="template"></i><span>Templates</span></button>
+        <button id="open-settings" class="nav-item as-button" type="button"><i data-icon="settings"></i><span>Settings</span></button>
+        <button id="theme-toggle" class="nav-item as-button" type="button" aria-label="Toggle theme"><i data-icon="moon"></i><span>Dark mode</span></button>
+      </div>
+    </aside>
+
+    <div id="scrim" class="scrim" hidden></div>
+
+    <!-- ============ Main ============ -->
+    <div class="main">
+      <header class="topbar">
+        <button id="mobile-menu" class="icon-btn mobile-only" type="button" aria-label="Open menu"><i data-icon="menu"></i></button>
+        <button id="sidebar-open" class="icon-btn desktop-only" type="button" aria-label="Expand sidebar" hidden><i data-icon="panel-left"></i></button>
+
+        <nav id="breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+
+        <div class="topbar-actions">
+          <span id="save-state" class="save-state" role="status" aria-live="polite">Saved</span>
+          <button id="btn-undo" class="icon-btn" type="button" aria-label="Undo" title="Undo  Ctrl Z"><i data-icon="undo"></i></button>
+          <button id="btn-export" class="icon-btn" type="button" aria-label="Export or import" title="Export or import"><i data-icon="download"></i></button>
+          <button id="btn-new" class="btn primary" type="button"><i data-icon="plus"></i><span>New task</span></button>
+        </div>
+      </header>
+
+      <!-- Per-project header + view tabs + toolbar are rendered here by app.js -->
+      <div id="page-head" class="page-head"></div>
+      <div id="toolbar" class="toolbar" hidden></div>
+
+      <main id="view" class="view" tabindex="-1" aria-live="polite"></main>
+    </div>
+  </div>
+
+  <!-- ============ Overlays ============ -->
+  <aside id="drawer" class="drawer" aria-hidden="true" aria-label="Task details"></aside>
+
+  <div id="palette" class="overlay" hidden>
+    <div class="palette" role="dialog" aria-modal="true" aria-label="Search">
+      <div class="palette-input">
+        <i data-icon="search"></i>
+        <input id="palette-field" type="text" placeholder="Search tasks, projects and docs, or type a command" autocomplete="off" spellcheck="false">
+        <kbd>Esc</kbd>
+      </div>
+      <ul id="palette-list" class="palette-list" role="listbox"></ul>
+    </div>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="menu-root"></div>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <noscript><p class="noscript">Plotline needs JavaScript to run. Turn it on and reload the page.</p></noscript>
+
+  <!-- Load order matters: each file adds to the global `Plot` namespace. -->
+  <script src="js/utils.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/seed.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/drawer.js"></script>
+  <script src="js/views/table.js"></script>
+  <script src="js/views/board.js"></script>
+  <script src="js/views/list.js"></script>
+  <script src="js/views/calendar.js"></script>
+  <script src="js/views/timeline.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/home.js"></script>
+  <script src="js/views/doc.js"></script>
+  <script src="js/palette.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
