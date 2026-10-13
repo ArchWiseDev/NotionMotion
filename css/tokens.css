@@ -1,0 +1,381 @@
+/* ==========================================================================
+   Plotline · tokens.css
+   Design tokens (color, type, space, motion), light + dark themes, base reset.
+   Every other stylesheet reads from these variables, so restyle here first.
+   ========================================================================== */
+
+:root {
+  /* ---- Type ---- */
+  --font-ui: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-2xs: 0.6875rem;  /* 11 */
+  --fs-xs: 0.75rem;     /* 12 */
+  --fs-sm: 0.8125rem;   /* 13 */
+  --fs-md: 0.9375rem;   /* 15 */
+  --fs-lg: 1.0625rem;   /* 17 */
+  --fs-xl: 1.375rem;    /* 22 */
+  --fs-2xl: 1.875rem;   /* 30 */
+  --fs-3xl: 2.5rem;     /* 40 */
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-body: 1.55;
+
+  /* ---- Space (4px base) ---- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+
+  /* ---- Radius: small controls < inputs < panels < sheets ---- */
+  --r-xs: 3px;
+  --r-sm: 5px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 18px;
+  --r-pill: 999px;
+
+  /* ---- Layout ---- */
+  --sidebar-w: 264px;
+  --topbar-h: 48px;
+  --drawer-w: 540px;
+  --content-max: 1280px;
+  --doc-max: 760px;
+  --row-h: 36px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --t-fast: 120ms;
+  --t-med: 200ms;
+  --t-slow: 320ms;
+
+  /* ---- Z layers ---- */
+  --z-sticky: 20;
+  --z-sidebar: 40;
+  --z-drawer: 60;
+  --z-overlay: 80;
+  --z-menu: 100;
+  --z-toast: 120;
+
+  /* ---- Accent (cobalt) ---- */
+  --accent: #3b5bdb;
+  --accent-hover: #314bc0;
+  --accent-soft: #e8edff;
+  --accent-ink: #ffffff;
+  --accent-ring: rgba(59, 91, 219, 0.35);
+}
+
+/* ==========================================================================
+   Light theme
+   ========================================================================== */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f6f7f9;            /* app canvas */
+  --surface: #ffffff;       /* panels, cards, inputs */
+  --surface-2: #fafbfc;     /* table headers, subtle wells */
+  --sidebar-bg: #eff1f5;
+  --hover: rgba(22, 28, 45, 0.05);
+  --active: rgba(22, 28, 45, 0.09);
+  --selected: #e8edff;
+
+  --ink: #171a22;           /* primary text */
+  --ink-2: #4a5160;         /* secondary text */
+  --ink-3: #7b8394;         /* tertiary, placeholders */
+  --ink-4: #aab0bd;         /* disabled */
+
+  --line: #e3e6ec;          /* default border */
+  --line-strong: #cfd4de;
+  --line-soft: #eef0f4;
+
+  --danger: #d7382f;
+  --danger-soft: #fdeceb;
+  --success: #1f8a5b;
+  --success-soft: #e4f5ec;
+  --warn: #b7791f;
+  --warn-soft: #fdf3dc;
+
+  --shadow-1: 0 1px 2px rgba(20, 26, 40, 0.06), 0 0 0 1px rgba(20, 26, 40, 0.04);
+  --shadow-2: 0 4px 12px rgba(20, 26, 40, 0.08), 0 1px 3px rgba(20, 26, 40, 0.06);
+  --shadow-3: 0 12px 32px rgba(20, 26, 40, 0.14), 0 2px 6px rgba(20, 26, 40, 0.08);
+  --shadow-drawer: -12px 0 40px rgba(20, 26, 40, 0.12);
+  --overlay: rgba(18, 22, 34, 0.38);
+
+  /* Notion-style property colors: bg + fg pairs */
+  --c-gray-bg: #eceef2;   --c-gray-fg: #4a5160;
+  --c-red-bg: #fde4e1;    --c-red-fg: #b3261e;
+  --c-orange-bg: #ffe8d1; --c-orange-fg: #a8500a;
+  --c-yellow-bg: #fff2c2; --c-yellow-fg: #7a5a00;
+  --c-green-bg: #dcf3e4;  --c-green-fg: #17704a;
+  --c-teal-bg: #d6f1f1;   --c-teal-fg: #0d6b70;
+  --c-blue-bg: #dce8ff;   --c-blue-fg: #1f4fb8;
+  --c-purple-bg: #ebe1fb; --c-purple-fg: #6430b5;
+  --c-pink-bg: #fbe0ee;   --c-pink-fg: #a3175f;
+
+  /* Solid versions for charts, dots, bars */
+  --c-gray: #8b93a3;
+  --c-red: #e5534b;
+  --c-orange: #f08a3c;
+  --c-yellow: #e5b422;
+  --c-green: #32a872;
+  --c-teal: #1fa5ab;
+  --c-blue: #4a7cf0;
+  --c-purple: #8b5cd6;
+  --c-pink: #dd4a93;
+}
+
+/* ==========================================================================
+   Dark theme
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f1218;
+  --surface: #171b24;
+  --surface-2: #1b202b;
+  --sidebar-bg: #12161e;
+  --hover: rgba(255, 255, 255, 0.06);
+  --active: rgba(255, 255, 255, 0.1);
+  --selected: #212a4a;
+
+  --ink: #eceef3;
+  --ink-2: #b4bac8;
+  --ink-3: #828a9c;
+  --ink-4: #566074;
+
+  --line: #272d3a;
+  --line-strong: #353d4e;
+  --line-soft: #1f2431;
+
+  --danger: #ff6b61;
+  --danger-soft: #3a1c1c;
+  --success: #4cc790;
+  --success-soft: #153126;
+  --warn: #f0b84d;
+  --warn-soft: #382c12;
+
+  --accent: #6c86f2;
+  --accent-hover: #8196f5;
+  --accent-soft: #212a4a;
+  --accent-ink: #0d1020;
+  --accent-ring: rgba(108, 134, 242, 0.45);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --shadow-2: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-3: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-drawer: -12px 0 40px rgba(0, 0, 0, 0.5);
+  --overlay: rgba(4, 6, 12, 0.6);
+
+  --c-gray-bg: #272c38;   --c-gray-fg: #b4bac8;
+  --c-red-bg: #4a2220;    --c-red-fg: #ff9d95;
+  --c-orange-bg: #4a2f16; --c-orange-fg: #ffb877;
+  --c-yellow-bg: #453a12; --c-yellow-fg: #f2d36b;
+  --c-green-bg: #163a29;  --c-green-fg: #7bdba9;
+  --c-teal-bg: #123a3d;   --c-teal-fg: #74d8dc;
+  --c-blue-bg: #1c3260;   --c-blue-fg: #9bbcff;
+  --c-purple-bg: #33244f; --c-purple-fg: #c7a8f5;
+  --c-pink-bg: #4a1f39;   --c-pink-fg: #f5a3cd;
+
+  --c-gray: #7d8596;
+  --c-red: #ff6b61;
+  --c-orange: #ff9f58;
+  --c-yellow: #f2c744;
+  --c-green: #4cc790;
+  --c-teal: #3ec4ca;
+  --c-blue: #6f9bff;
+  --c-purple: #a67ff0;
+  --c-pink: #f26aad;
+}
+
+/* ==========================================================================
+   Reset + base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;           /* the app manages its own scroll regions */
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+button:disabled, [aria-disabled="true"] { cursor: not-allowed; opacity: 0.5; }
+
+input, textarea, select {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  min-width: 0;
+}
+
+input::placeholder, textarea::placeholder { color: var(--ink-3); }
+
+textarea { resize: none; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--s-4) 0; }
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--ink-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: var(--r-xs);
+  padding: 1px 5px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--hover);
+  border-radius: var(--r-xs);
+  padding: 1px 5px;
+}
+
+[hidden] { display: none !important; }
+
+::selection { background: var(--accent-ring); }
+
+/* Keyboard focus: visible, but only when the keyboard is in use */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+/* Scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: var(--r-pill);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--ink-4); background-clip: content-box; border: 2px solid transparent; }
+
+/* ==========================================================================
+   Small utilities used across the app
+   ========================================================================== */
+.skip-link {
+  position: fixed;
+  left: var(--s-3);
+  top: -60px;
+  z-index: var(--z-toast);
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  transition: top var(--t-fast) var(--ease-out);
+}
+.skip-link:focus { top: var(--s-3); }
+
+.noscript {
+  padding: var(--s-8);
+  text-align: center;
+  color: var(--ink-2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.muted { color: var(--ink-3); }
+.mono { font-family: var(--font-mono); }
+
+.mobile-only { display: none !important; }
+
+@media (max-width: 860px) {
+  .mobile-only { display: inline-flex !important; }
+  .desktop-only { display: none !important; }
+}
+
+/* Prevent text selection while dragging items around */
+body.is-dragging, body.is-dragging * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  cursor: grabbing !important;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print: show only the main view */
+@media print {
+  body { overflow: visible; background: #fff; }
+  .sidebar, .topbar, .toolbar, .drawer, .toast-root { display: none !important; }
+}
